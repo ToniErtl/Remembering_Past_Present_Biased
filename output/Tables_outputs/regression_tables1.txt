@@ -1,0 +1,12 @@
+		(1)	(2)	(3)	(4)
+VARIABLES	LABELS	Dummy of Misremembering	Intensity of Misremembering	Dummy of Misremembering	Intensity of Misremembering
+					
+Present_bias_dummy	Present_bias_dummy	-0.158*	-0.158*	0.392***	0.491
+		(0.0871)	(0.0871)	(0.122)	(0.499)
+Constant	Constant	0.158*	0.158*	0.286***	0.929**
+		(0.0871)	(0.0871)	(0.0869)	(0.388)
+					
+Observations		26	26	59	59
+R-squared		0.048	0.048	0.153	0.017
+Robust standard errors in parentheses					
+*** p<0.01, ** p<0.05, * p<0.1					

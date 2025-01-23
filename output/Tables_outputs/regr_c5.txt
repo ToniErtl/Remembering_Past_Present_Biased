@@ -1,0 +1,32 @@
+		(1)	(2)	(3)	(4)	(5)	(6)
+VARIABLES	LABELS	Dummy of Misremembering	Dummy of Misremembering	Dummy of Misremembering	Dummy of Misremembering	Dummy of Misremembering	Dummy of Misremembering
+							
+Present_bias_intensity	Intensity of Present Bias				0.0766***	-0.0456*	-0.0434
+					(0.0173)	(0.0251)	(0.0386)
+Second_visit	Second Visit	0.312***	0.128	0.128	0.314***	0.186*	0.185*
+		(0.0961)	(0.122)	(0.121)	(0.0963)	(0.111)	(0.109)
+presentb_secondvisit	P. Bias Intensity x Second Visit					0.144***	0.141***
+						(0.0320)	(0.0484)
+Female	Female			0.115			0.130
+				(0.112)			(0.108)
+Mother_has_diploma	Mother_has_diploma			0.0557			0.0478
+				(0.145)			(0.146)
+Social_rank	socialrank_1			-0.0171			-0.00576
+				(0.0323)			(0.0321)
+Math	math			0.0228			0.0430
+				(0.0521)			(0.0532)
+Trust	trust			0.0725			0.0482
+				(0.0521)			(0.0561)
+Risk	risk			0.0529			0.0407
+				(0.0603)			(0.0585)
+Present_bias_dummy	Present_bias_dummy	0.250**	-0.158*	-0.130			
+		(0.0989)	(0.0857)	(0.135)			
+presentbdummy_secondvisit	P. Bias x Second Visit		0.550***	0.523***			
+			(0.150)	(0.195)			
+Constant	Constant	0.0481	0.158*	-0.276	0.0564	0.150*	-0.334
+		(0.0787)	(0.0857)	(0.390)	(0.0731)	(0.0818)	(0.384)
+							
+Observations		85	85	85	85	85	85
+R-squared		0.190	0.247	0.282	0.228	0.272	0.302
+Robust standard errors in parentheses							
+*** p<0.01, ** p<0.05, * p<0.1							
