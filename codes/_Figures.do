@@ -26,7 +26,7 @@ use "${DATA}data_clean_working.dta"
 
 	* generate variable:
 gen sw_diff12 = Switching_point2-Switching_point1
-label var sw_diff12 "Difference in Switching Points between 2nd and 1st Visit"
+label var sw_diff12 "Difference in switching points between second and first visit"
 
 	*graph:
 histogram sw_diff12 ,discrete width(1) percent color(navy)
