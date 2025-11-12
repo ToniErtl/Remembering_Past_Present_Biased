@@ -66,10 +66,50 @@ graph export "${OUT}combined_nonlinfit_pb_rem_final.png", as(png) replace
 
 
 
+//--- Extra figure?
 
 
+clear all
+use "${DATA}data_clean_working.dta"
+drop if treatment == 1
+drop if no_switching_point == 1
 
+twoway ///
+    (scatter Switching_point3 Switching_point1  if Present_bias_dummy == 0 & fb_dummy==0, ///
+        msymbol(circle) mcolor(navy) jitter(5)) ///
+    (scatter Switching_point3 Switching_point1 if Present_bias_dummy == 1, ///
+        msymbol(circle) mcolor(red) jitter(5)) ///
+	(scatter Switching_point3 Switching_point1 if fb_dummy == 1, ///
+        msymbol(circle) mcolor(orange) jitter(5)) ///
+    (function y=x, range(0 12) lcolor(red) lpattern(dash)), ///
+    xlabel(0(2)12) ylabel(0(2)12) ///
+    ytitle("Switching Point Remembering") xtitle("First Visit Switching Point") ///
+    title("") ///
+	legend(off)
 
+	
+	
+	
+	
+
+clear all
+use "${DATA}data_clean_working.dta"
+drop if treatment == 0
+drop if no_switching_point == 1
+
+twoway ///
+    (scatter Switching_point3 Switching_point2 if Present_bias_dummy == 0 & fb_dummy==0, ///
+        msymbol(circle) mcolor(navy) jitter(5)) ///
+    (scatter Switching_point3 Switching_point2 if Present_bias_dummy == 1, ///
+        msymbol(circle) mcolor(red) jitter(5)) ///
+	(scatter Switching_point3 Switching_point2 if fb_dummy == 1, ///
+        msymbol(circle) mcolor(orange) jitter(5)) ///
+    (function y=x, range(0 12) lcolor(red) lpattern(dash)), ///
+    xlabel(0(2)12) ylabel(0(2)12) ///
+    ytitle("Switching Point Remembering") xtitle("Second Visit Switching Point") ///
+    title("") ///
+	legend(off)
+	
 
 
 
