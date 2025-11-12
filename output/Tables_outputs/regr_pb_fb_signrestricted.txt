@@ -1,0 +1,16 @@
+		(1)	(2)	(3)	(4)	(5)	(6)	(7)	(8)
+VARIABLES	LABELS	Dummy of Misremembering	Misremembering_intensity_abs	Dummy of Misremembering	Misremembering_intensity_abs	Dummy of Misremembering	Misremembering_intensity_abs	Dummy of Misremembering	Misremembering_intensity_abs
+									
+Present_bias_dummy	Present_bias_dummy	-0.158*	-0.158*	0.392***	0.491				
+		(0.0877)	(0.0877)	(0.122)	(0.501)				
+fb_dummy	fb_dummy	0.556***	0.985**	0.0476	-0.345				
+		(0.199)	(0.402)	(0.164)	(0.480)				
+Time_bias_intensity	Time_bias_intensity					0.0312	0.0413	0.0769***	0.334**
+						(0.0499)	(0.0579)	(0.0246)	(0.141)
+Constant	Constant	0.158*	0.158*	0.286***	0.929**	0.208**	0.288**	0.334***	0.516*
+		(0.0877)	(0.0877)	(0.0872)	(0.389)	(0.0860)	(0.126)	(0.0715)	(0.295)
+									
+Observations		33	33	71	71	33	33	71	71
+R-squared		0.347	0.388	0.142	0.032	0.012	0.008	0.112	0.167
+Robust standard errors in parentheses									
+*** p<0.01, ** p<0.05, * p<0.1									

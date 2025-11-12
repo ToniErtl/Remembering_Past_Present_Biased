@@ -117,7 +117,7 @@ ranksum total_remember if fb_dummy == 1, by(fb_first_second)
 
 
 //----- 
-* Appendix : no sign-restriction
+* Appendix: Table C.7 : no sign-restriction
 //------
 
 
@@ -339,31 +339,6 @@ outreg2 using "${OUT}regression_tables2.xls", append tex(frag pr land) label sor
 
 
 
-// ---------------------
-// After reviews -- Modifications
-
-
-
-// First: add a correlation table:
-
-
-clear all
-use "${DATA}data_clean_working.dta"
-
-* --- data exclusion: only those with no switching points
-
-*drop if Present_bias_dummy == 1
-*drop if Misremembering_intensity<0
-*drop if treatment == 1
-drop if no_switching_point == 1
-
-
-gen Misremembering_intensity_abs = abs(Misremembering_intensity)
-
-
-pwcorr Misremembering_dummy Misremembering_intensity_abs Switching_point1 Switching_point2 fb_dummy Present_bias_dummy Female Math Social_rank Trust Risk, star(.05)
-
-
 
 
 // ---------------------
@@ -375,166 +350,18 @@ pwcorr Misremembering_dummy Misremembering_intensity_abs Switching_point1 Switch
 
 
 
-// ---------------------
-//  TESTING NON-MOTIVATED BELIEFS: a)
 
-// Y variable: Either correct remembering or not remembering towards the non-motivated direction
 
-// Future biased individuals included
 
-// ---------------------
+//-----------------------------------------------------------------
 
 
-* Future biased individuals also included
-	
-	
-clear all
-use "${DATA}data_clean_working.dta"
 
-*drop if fb_dummy == 1
-drop if Misremembering_intensity>0
-drop if treatment == 1
-drop if no_switching_point == 1
 
-gen Misremembering_intensity_abs = abs(Misremembering_intensity)
+// TABLE 4 
 
-
-reg Misremembering_dummy Present_bias_dummy fb_dummy, robust
-outreg2 using "${OUT}regr_nonmotivated_1.xls", replace tex(frag pr land) label sortvar(Present_bias_dummy)
-
-
-
-clear all
-use "${DATA}data_clean_working.dta"
-*drop if fb_dummy == 1
-drop if Misremembering_intensity>0
-drop if treatment == 1
-drop if no_switching_point == 1
-
-gen Misremembering_intensity_abs = abs(Misremembering_intensity)
-
-reg Misremembering_intensity_abs Present_bias_dummy fb_dummy, robust
-outreg2 using "${OUT}regr_nonmotivated_1.xls", append tex(frag pr land) label sortvar(Present_bias_dummy)
-
-
-
-
-
-clear all
-use "${DATA}data_clean_working.dta"
-*drop if fb_dummy == 1
-drop if Misremembering_intensity>0
-drop if treatment == 0
-drop if no_switching_point == 1
-
-gen Misremembering_intensity_abs = abs(Misremembering_intensity)
-
-reg Misremembering_dummy Present_bias_dummy fb_dummy, robust
-outreg2 using "${OUT}regr_nonmotivated_1.xls", append tex(frag pr land) label sortvar(Present_bias_dummy)
-
-
-
-
-
-
-clear all
-use "${DATA}data_clean_working.dta"
-*drop if fb_dummy == 1
-drop if Misremembering_intensity>0
-drop if treatment == 0
-drop if no_switching_point == 1
-
-gen Misremembering_intensity_abs = abs(Misremembering_intensity)
-
-reg Misremembering_intensity_abs Present_bias_dummy fb_dummy, robust
-outreg2 using "${OUT}regr_nonmotivated_1.xls", append tex(frag pr land) label sortvar(Present_bias_dummy)
-
-
-
-//// FROM HERE -- PRESENT BIAS INTENSITY SHOULD BE CHANGED TO SOMETHING THAT INCLUDES
-//				  FUTURE BIAS AS WELL
-
-
-
-
-clear all
-use "${DATA}data_clean_working.dta"
-
-*drop if fb_dummy == 1
-drop if Misremembering_intensity>0
-drop if treatment == 1
-drop if no_switching_point == 1
-
-gen Misremembering_intensity_abs = abs(Misremembering_intensity)
-gen Time_bias_intensity = 0
-replace Time_bias_intensity = Present_bias_intensity if Present_bias_dummy == 1
-replace Time_bias_intensity = Future_bias_intensity if fb_dummy == 1
-
-
-
-reg Misremembering_dummy Time_bias_intensity, robust
-outreg2 using "${OUT}regr_nonmotivated_1.xls", append tex(frag pr land) label sortvar(Present_bias_intensity)
-
-
-
-clear all
-use "${DATA}data_clean_working.dta"
-
-
-*drop if fb_dummy == 1
-drop if Misremembering_intensity>0
-drop if treatment == 1
-drop if no_switching_point == 1
-
-gen Misremembering_intensity_abs = abs(Misremembering_intensity)
-gen Time_bias_intensity = 0
-replace Time_bias_intensity = Present_bias_intensity if Present_bias_dummy == 1
-replace Time_bias_intensity = Future_bias_intensity if fb_dummy == 1
-
-
-reg Misremembering_intensity_abs Time_bias_intensity, robust
-outreg2 using "${OUT}regr_nonmotivated_1.xls", append tex(frag pr land) label sortvar(Present_bias_intensity)
-
-
-
-
-clear all
-use "${DATA}data_clean_working.dta"
-
-
-*drop if fb_dummy == 1
-drop if Misremembering_intensity>0
-drop if treatment == 0
-drop if no_switching_point == 1
-
-gen Misremembering_intensity_abs = abs(Misremembering_intensity)
-gen Time_bias_intensity = 0
-replace Time_bias_intensity = Present_bias_intensity if Present_bias_dummy == 1
-replace Time_bias_intensity = Future_bias_intensity if fb_dummy == 1
-
-
-reg Misremembering_dummy Time_bias_intensity, robust
-outreg2 using "${OUT}regr_nonmotivated_1.xls", append tex(frag pr land) label sortvar(Present_bias_intensity)
-
-
-
-clear all
-use "${DATA}data_clean_working.dta"
-*drop if fb_dummy == 1
-drop if Misremembering_intensity>0
-drop if treatment == 0
-drop if no_switching_point == 1
-
-
-gen Misremembering_intensity_abs = abs(Misremembering_intensity)
-gen Time_bias_intensity = 0
-replace Time_bias_intensity = Present_bias_intensity if Present_bias_dummy == 1
-replace Time_bias_intensity = Future_bias_intensity if fb_dummy == 1
-
-
-reg Misremembering_intensity_abs Time_bias_intensity, robust
-outreg2 using "${OUT}regr_nonmotivated_1.xls", append tex(frag pr land) label sortvar(Present_bias_intensity)
-
+// Table 4 is a combination of three large regression tables
+// These were combined manually in the __Master_all_results.xlsx" table
 
 
 
@@ -551,7 +378,7 @@ outreg2 using "${OUT}regr_nonmotivated_1.xls", append tex(frag pr land) label so
 
 //-----------------------------------------------------------------
 
-* Robustness test: Sign restriction, with FB biases present
+* Part 1 of Table 4
 
 
 * future biased individuals also present
@@ -637,11 +464,6 @@ outreg2 using "${OUT}NEW_regr_pb_fb_signrestricted.xls", append tex(frag pr land
 
 
 
-//// FROM HERE -- PRESENT BIAS INTENSITY SHOULD BE CHANGED TO SOMETHING THAT INCLUDES
-//				  FUTURE BIAS AS WELL
-
-
-
 
 clear all
 use "${DATA}data_clean_working.dta"
@@ -741,7 +563,9 @@ outreg2 using "${OUT}NEW_regr_pb_fb_signrestricted.xls", append tex(frag pr land
 
 
 // ---------------------
-//  TESTING NON-MOTIVATED BELIEFS:
+//  
+// PART 2 of TABLE 4:
+
 
 // Y variable: Either correct remembering or not remembering towards the non-motivated direction
 
@@ -921,16 +745,17 @@ outreg2 using "${OUT}NEW_regr_nonmotivated_1.xls", append tex(frag pr land) labe
 
 
 
+// End of Part 2 of Table 4
+
+//---------------------------------------------------------
+
+//--------
+//--------
+//--------
 
 
 
-
-
-
-
-
-
-
+// Part 3 of Table 4:
 
 * Robustness test: no restrictions used: 
 
@@ -1114,7 +939,7 @@ outreg2 using "${OUT}NEW_regr_norestriction.xls", append tex(frag pr land) label
 
 
 
-
+// End of Part 3 of Table 4
 
 
 
@@ -1176,8 +1001,12 @@ ranksum Risk, by(treatment)
 
 
 
+
+
+
+
 //----------------------------------------------------------------------
-// Appendix table: Table C4 Switching point Matrix:
+// Appendix table: Table C6 Switching point Matrix:
 
 clear all
 use "${DATA}data_clean_working.dta"
@@ -1244,10 +1073,45 @@ putexcel A1 = matrix(PercentagesWithTotals), names
 
 
 
+
+
+
+
+
+
+
+// ---------------------
+
+
+
+// Added a correlation table (Appendix C.4., Table C.8.)
+
+
+clear all
+use "${DATA}data_clean_working.dta"
+
+* --- data exclusion: only those with no switching points
+
+*drop if Present_bias_dummy == 1
+*drop if Misremembering_intensity<0
+*drop if treatment == 1
+drop if no_switching_point == 1
+
+
+gen Misremembering_intensity_abs = abs(Misremembering_intensity)
+
+
+pwcorr Misremembering_dummy Misremembering_intensity_abs Switching_point1 Switching_point2 fb_dummy Present_bias_dummy Female Math Social_rank Trust Risk, star(.05)
+
+
+
+
+
+
 //----------------------------------------------------------------------
 // Appendix tables: Regression results with background variables
 
-// 1)  	Table C5: Dependent variable: motivated misremembering dummy
+// 1)  	Table C9: Dependent variable: motivated misremembering dummy
 
 clear all
 use "${DATA}data_clean_working.dta"
@@ -1291,7 +1155,7 @@ outreg2 using "${OUT}regr_c5.xls", append tex(frag pr land) label sortvar(Presen
 
 
 
-// 2) 	Table C6: Dependent variable: motivated misremembering intensiity
+// 2) 	Table C10: Dependent variable: motivated misremembering intensiity
 
 
 
